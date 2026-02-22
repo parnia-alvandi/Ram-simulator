@@ -56,9 +56,13 @@ int MemoryManager::getPageFaults() const {
 }
 
 void MemoryManager::printMemory() const {
-    std::cout << "Memory: ";
-    for (const auto& frame : frames) {
-        std::cout << frame.getPage() << " ";
+    std::cout << "Memory: [";
+    for (int i = 0; i < (int)frames.size(); i++) {
+        if (i > 0) std::cout << " | ";
+        if (frames[i].getPage() == -1)
+            std::cout << "---";
+        else
+            std::cout << frames[i].getPage();
     }
-    std::cout << std::endl;
+    std::cout << "]" << std::endl;
 }
