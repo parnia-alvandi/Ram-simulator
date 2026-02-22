@@ -24,14 +24,22 @@ void Optimal::accessPage(int page) {
 
     int replaceIndex = 0;
     int farthest = -1;
+    bool found = false;
 
     for (int i = 0; i < memory.getFrameCount(); i++) {
         int framePage = memory.getFrame(i).getPage();
         int j;
 
-        for (j = currentIndex + 1; j < futurePages.size(); j++) {
+        for (j = currentIndex + 1; j < (int)futurePages.size(); j++) {
             if (futurePages[j] == framePage)
                 break;
+        }
+
+        // If page never appears again, this is the best choice
+        if (j == (int)futurePages.size()) {
+            replaceIndex = i;
+            found = true;
+            break;
         }
 
         if (j > farthest) {
