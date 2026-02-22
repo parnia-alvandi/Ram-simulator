@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 #include "MemoryManager.h"
 #include "ReplacementAlgorithm.h"
@@ -48,6 +49,7 @@ int main() {
     }
 
     for (int page : pages) {
+        cout << "Accessing page " << page << ": ";
         algorithm->accessPage(page);
         manager.printMemory();
     }
