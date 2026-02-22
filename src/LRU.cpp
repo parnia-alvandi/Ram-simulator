@@ -25,13 +25,15 @@ void LRU::accessPage(int page) {
         int lruPage = usageOrder.front();
         usageOrder.erase(usageOrder.begin());
 
-        int frameIndex = memory.getFrameCount();
+        int frameIndex = -1;
         for (int i = 0; i < memory.getFrameCount(); i++) {
             if (memory.getFrame(i).getPage() == lruPage) {
                 frameIndex = i;
                 break;
             }
         }
+
+        if (frameIndex == -1) return; // safety check
 
         memory.replacePage(frameIndex, page);
         usageOrder.push_back(page);
