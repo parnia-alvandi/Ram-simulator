@@ -54,8 +54,7 @@ int main() {
         manager.printMemory();
     }
 
-    cout << "\nTotal Page Faults: "
-         << manager.getPageFaults() << endl;
+    cout << "\nTotal Page Faults: "<< manager.getPageFaults() << endl;
 
     delete algorithm;
     return 0;
